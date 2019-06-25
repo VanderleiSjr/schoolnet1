@@ -3,20 +3,22 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Contato - Chatshool</title>
     <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link rel="stylesheet" href="css/pages/contato.css">
+    <link rel="stylesheet" href="css/pages/contato.min.css">
 </head>
 
 <body>
     <header id="header" class="page-contato">
         <div class="container">
             <div class="row">
-                <div class="col col-desktop-3">
+                <div class="col col-desktop-3 col-6">
                     <a href="index.html"><img src="images/logo.png" alt="Logo da Chatschool"></a>
                 </div>
-                <div class="col col-desktop-9">
+                <div class="col col-desktop-9 col-6">
                     <nav>
                         <ul>
                             <li><a href="/">Home</a></li>
@@ -43,8 +45,8 @@
                 dipisicing elit.adipisicing elit.adipisicing elit.
             </p>
             <div class="container">
-                <form class="row">
-                    <div class="col col-desktop-6">
+                <form action="https://script.google.com/macros/s/AKfycbyV6tfQxRXtF9WQQeV3zRUrim0h1AOKYnS-P42geFHJQLpwGEh2/exec" class="row" method="POST">
+                    <div class="col col-desktop-6 col-6">
                         <div class="input-control">
                             <input id="nome" type="text" name="nome" placeholder="Nome...">
                             <label for="nome">Nome*</label>
@@ -59,7 +61,7 @@
                         </div>
 
                     </div>
-                    <div class="col col-desktop-6">
+                    <div class="col col-desktop-6 col-6">
                         <div class="input-control">
                             <textarea name="mensagem" id="mensagem" cols="30" rows="10" placeholder="Mensagem..."></textarea>
                             <label for="mensagem">Mensagem</label>
@@ -102,6 +104,27 @@
     <div id="copyright">
         &copy; Chatschool - 2019 - Todos os direitos reservados
     </div>
-</body>
 
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script>
+    $('form').submit(function (event) {
+        event.preventDefault();
+        $('form input[type="submit"]').val('Aguarde...')
+            .attr('disabled', true);
+        $.ajax({
+            type: $('form').attr('method'),
+            url: $('form').attr('action'),
+            data: $('form').serialize(),
+            success: function () {
+                alert('Email enviado com sucesso');
+                $('form').trigger('reset');
+                $('form input[type="submit"]').val('Enviar')
+                .attr('disabled', false);
+            }
+        });
+    });
+</script>
+
+
+</body>
 </html>
